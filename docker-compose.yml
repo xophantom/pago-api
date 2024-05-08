@@ -8,7 +8,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
+      - DATABASE_URL=postgresql://postgres:password@db:5432/database-postgres
     depends_on:
       - db
     volumes:
@@ -21,6 +21,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: database-postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password

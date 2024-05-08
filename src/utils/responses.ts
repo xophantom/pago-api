@@ -1,10 +1,10 @@
-import { ResponseApiOnSucessOrErrorType } from '../types/response_type';
+import { ResultHandlerType } from '../types/response_type';
 
 export default class ResultHandler {
   created<DataType, ErrType>(
     data: DataType,
     err: ErrType,
-  ): ResponseApiOnSucessOrErrorType<DataType, ErrType> {
+  ): ResultHandlerType<DataType, ErrType> {
     return {
       status: 201,
       data,
@@ -14,7 +14,7 @@ export default class ResultHandler {
 
   notFound<DataType, ErrType>(
     err: ErrType,
-  ): ResponseApiOnSucessOrErrorType<DataType, ErrType> {
+  ): ResultHandlerType<DataType, ErrType> {
     return {
       status: 404,
       data: null,
@@ -25,7 +25,7 @@ export default class ResultHandler {
   success<DataType, ErrType>(
     data: DataType,
     err: ErrType,
-  ): ResponseApiOnSucessOrErrorType<DataType, ErrType> {
+  ): ResultHandlerType<DataType, ErrType> {
     return {
       status: 200,
       data,
@@ -35,7 +35,7 @@ export default class ResultHandler {
 
   badRequest<DataType, ErrType>(
     err: ErrType,
-  ): ResponseApiOnSucessOrErrorType<DataType, ErrType> {
+  ): ResultHandlerType<DataType, ErrType> {
     return {
       status: 400,
       data: null,
@@ -43,9 +43,7 @@ export default class ResultHandler {
     };
   }
 
-  error<ErrType>(
-    error: ErrType,
-  ): ResponseApiOnSucessOrErrorType<null, ErrType> {
+  error<ErrType>(error: ErrType): ResultHandlerType<null, ErrType> {
     return {
       status: 500,
       data: null,

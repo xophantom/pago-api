@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import * as yup from 'yup';
-import { IUserRepository } from '../repositories/IUserRepository';
-import { ResponseApiOnSucessOrErrorType } from '../types/response_type';
+import { IUserRepository } from '../repositories/user/IUserRepository';
+import { ResultHandlerType } from '../types/response_type';
 import { ErrorsTypes } from '../types/error';
 import { validateUser } from '../validations/userValidation';
 import { inject, injectable } from 'tsyringe';
@@ -18,7 +18,7 @@ export class UserService {
 
   public async fetchUser(
     id: string,
-  ): Promise<ResponseApiOnSucessOrErrorType<User, ErrorsTypes>> {
+  ): Promise<ResultHandlerType<User, ErrorsTypes>> {
     try {
       const userFound = await this.userRepository.fetchUser(id);
 
@@ -33,7 +33,7 @@ export class UserService {
 
   public async addUser(
     user: User,
-  ): Promise<ResponseApiOnSucessOrErrorType<User, ErrorsTypes>> {
+  ): Promise<ResultHandlerType<User, ErrorsTypes>> {
     try {
       await this.validation.create(user);
       const newUser = await this.userRepository.addUser(user);
@@ -52,7 +52,7 @@ export class UserService {
 
   public async modifyUser(
     user: User,
-  ): Promise<ResponseApiOnSucessOrErrorType<User, ErrorsTypes>> {
+  ): Promise<ResultHandlerType<User, ErrorsTypes>> {
     try {
       await this.validation.update(user);
       const { id } = user;
@@ -74,7 +74,7 @@ export class UserService {
 
   public async removeUser(
     id: string,
-  ): Promise<ResponseApiOnSucessOrErrorType<string, ErrorsTypes>> {
+  ): Promise<ResultHandlerType<string, ErrorsTypes>> {
     try {
       const removeUser = await this.userRepository.removeUser(id);
 

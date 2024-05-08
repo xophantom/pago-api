@@ -1,4 +1,4 @@
-export interface ResponseApiOnSucessOrErrorType<DataType, ErrType> {
+export interface ResultHandlerType<DataType, ErrType> {
   status: number;
   data: DataType;
   error: ErrType;

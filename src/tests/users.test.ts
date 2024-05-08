@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { User } from '@prisma/client';
 import ResultHandler from '../utils/responses';
 import { UserService } from '../services/UserService';
-import { MockUserRepository } from '../repositories/MockUserRepository';
+import { MockUserRepository } from '../repositories/user/MockUserRepository';
 
 const sampleUser: User = {
   id: 'e09332c-f9cc-493e-9dd3-6254b4fa8909',

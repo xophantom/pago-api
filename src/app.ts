@@ -1,12 +1,17 @@
+import 'dotenv';
+import 'reflect-metadata';
+import './utils/container';
 import express from 'express';
+import userRoutes from './routes/userRoutes';
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.get('/healthcheck', (req, res) => {
-  res.json({ status: 'UP' });
+app.use(express.json());
+app.use('/users', userRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+export default app;

@@ -7,7 +7,10 @@ export class UserRepository implements IUserRepository {
   constructor(@inject('PrismaClient') private prisma: PrismaClient) {}
 
   async fetchUser(id: string): Promise<User | null> {
-    return await this.prisma.user.findUnique({ where: { id } });
+    return await this.prisma.user.findUnique({
+      where: { id },
+      include: { cars: true },
+    });
   }
 
   async addUser(user: User): Promise<User> {
